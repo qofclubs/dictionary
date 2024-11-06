@@ -37,7 +37,7 @@ class Dictionary implements \Countable , \ArrayAccess , \Serializable , \Iterato
             return 'string:' . $value;
         } elseif (is_int($value)) {
             return 'int:' . $value;
-        } elseif (is_real($value)) {
+        } elseif (is_float($value)) {
             return 'float:' . $value;
         } elseif (is_bool($value)) {
             return 'bool:' . ((int)$value);
@@ -226,9 +226,13 @@ class Dictionary implements \Countable , \ArrayAccess , \Serializable , \Iterato
     {
         if (!is_callable($callback)) {
             if (is_null($callback) or is_string($callback) && 'values' === strtolower($callback)) {
-                $callback = function ($value, $key) { return $value; };
+                $callback = function ($value, $key) {
+                    return $value;
+                };
             } else if (is_string($callback) && 'keys' === strtolower($callback)) {
-                $callback = function ($value, $key) { return $key; };
+                $callback = function ($value, $key) {
+                    return $key;
+                };
             } else {
                 throw new \InvalidArgumentException(sprintf(
                     'Dictionary::sort() argument must be "keys", "values" or callable, '
@@ -262,7 +266,7 @@ class Dictionary implements \Countable , \ArrayAccess , \Serializable , \Iterato
         }
 
         array_multisort($order, $direction, SORT_REGULAR, $this->data, $this->keys);
-        
+
         return $this; //to allow chaining
     }
 

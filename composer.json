@@ -17,7 +17,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^5.4 || ^7.0 || ^8.0",
+        "php": "^7.4 || ^8.2",
         "ext-spl": "*"
     },
     "reguire-dev": {
@@ -30,5 +30,8 @@
         "exclude-from-classmap": [
             "/Tests/"
         ]
+    },
+    "require-dev": {
+        "rector/rector": "dev-main"
     }
 }
